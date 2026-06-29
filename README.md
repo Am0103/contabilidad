@@ -1,35 +1,33 @@
 # Control de gastos quincenal
 
-Una página web sencilla y elegante para llevar el control de tus gastos por quincena, con enfoque en ingresos, alimentación, transporte, servicios y otros gastos.
+Una página sencilla y elegante para llevar el control de tus gastos por quincena, con:
 
-## ¿Qué hace?
+- ingreso quincenal
+- gastos por categoría
+- comparación con la quincena anterior
+- gráfica visual
+- recomendaciones de ahorro
 
-- Muestra el ingreso quincenal aproximado.
-- Registra gastos reales por categoría.
-- Muestra un monto sugerido como referencia para cada área.
-- Compara la quincena actual con la anterior.
-- Presenta una gráfica visual de gastos.
-- Genera recomendaciones básicas para ayudarte a ver si estás gastando demasiado.
+## Categorías incluidas
 
-## Características
+- Alimentación
+- Transporte
+- Servicios
+- Otros gastos
 
-- Diseño moderno y limpio.
-- Funciona en navegador sin necesidad de instalar nada.
-- Guarda los datos en el navegador con localStorage.
-- Fácil de usar para personas que quieren organizar sus finanzas personales.
+## Tecnologías
+
+- HTML
+- CSS
+- JavaScript
 
 ## Cómo usarlo
 
 1. Abre el archivo index.html en tu navegador.
 2. Ingresa tu ingreso quincenal.
-3. Coloca tus gastos reales en cada categoría.
-4. Revisa la comparación, la gráfica y las recomendaciones.
+3. Registra tus gastos reales por categoría.
+4. Revisa la gráfica y el resumen de sobras.
 
-## Estructura del proyecto
+## Objetivo
 
-- index.html: interfaz principal de la aplicación.
-- README.md: explicación del proyecto.
-
-## Nota
-
-Este proyecto está pensado como una herramienta práctica y visual para controlar gastos básicos de forma sencilla.
+Ayudar a visualizar mejor cómo se distribuye el dinero cada quincena y cuánto podría sobrar para ahorro o imprevistos.
