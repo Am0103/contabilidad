@@ -87,6 +87,16 @@
         border: 1px solid rgba(255,255,255,0.08);
       }
 
+      .stat.warning {
+        background: rgba(245, 158, 11, 0.15);
+        border-color: rgba(245, 158, 11, 0.35);
+      }
+
+      .stat.danger {
+        background: rgba(251, 113, 133, 0.18);
+        border-color: rgba(251, 113, 133, 0.38);
+      }
+
       .stat .label {
         color: var(--muted);
         font-size: 0.9rem;
@@ -163,6 +173,16 @@
         box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.16);
       }
 
+      input.over-limit {
+        border-color: rgba(251, 113, 133, 0.8);
+        box-shadow: 0 0 0 3px rgba(251, 113, 133, 0.16);
+      }
+
+      .suggestion-box.over-limit {
+        background: rgba(251, 113, 133, 0.12);
+        border-color: rgba(251, 113, 133, 0.4);
+      }
+
       .actions {
         display: flex;
         gap: 10px;
@@ -197,6 +217,67 @@
         background: rgba(255,255,255,0.06);
         color: #dfe7f3;
         border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .goal-card {
+        margin-top: 14px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.08);
+        padding: 12px;
+      }
+
+      .section-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #f8fbff;
+      }
+
+      .progress-track {
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.12);
+        overflow: hidden;
+        margin-top: 8px;
+      }
+
+      .progress-fill {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        width: 0%;
+        transition: width 0.25s ease;
+      }
+
+      .history-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .history-item {
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .history-item strong {
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .chip {
+        display: inline-block;
+        margin-top: 5px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        background: rgba(52, 211, 153, 0.16);
+        color: #a7f3d0;
       }
 
       .chart-card svg {
@@ -293,7 +374,7 @@
                   <span class="suggestion-help">Referencia para alimentación</span>
                 </div>
                 <label for="foodCurrent">Gasto real en Alimentación</label>
-                <input id="foodCurrent" name="foodCurrent" type="number" min="0" step="1000" value="180000" />
+                <input id="foodCurrent" name="foodCurrent" type="number" min="0" step="1000" value="500000" />
               </div>
 
               <div class="field">
@@ -303,7 +384,7 @@
                   <span class="suggestion-help">Referencia para transporte</span>
                 </div>
                 <label for="transportCurrent">Gasto real en Transporte</label>
-                <input id="transportCurrent" name="transportCurrent" type="number" min="0" step="1000" value="45000" />
+                <input id="transportCurrent" name="transportCurrent" type="number" min="0" step="1000" value="150000" />
               </div>
 
               <div class="field">
@@ -313,7 +394,7 @@
                   <span class="suggestion-help">Referencia para servicios</span>
                 </div>
                 <label for="servicesCurrent">Gasto real en Servicios</label>
-                <input id="servicesCurrent" name="servicesCurrent" type="number" min="0" step="1000" value="70000" />
+                <input id="servicesCurrent" name="servicesCurrent" type="number" min="0" step="1000" value="80000" />
               </div>
 
               <div class="field">
@@ -329,17 +410,17 @@
               <h3>Quincena anterior</h3>
               <div class="field">
                 <label for="foodPrevious">Alimentación</label>
-                <input id="foodPrevious" name="foodPrevious" type="number" min="0" step="1000" value="170000" />
+                <input id="foodPrevious" name="foodPrevious" type="number" min="0" step="1000" value="480000" />
               </div>
 
               <div class="field">
                 <label for="transportPrevious">Transporte</label>
-                <input id="transportPrevious" name="transportPrevious" type="number" min="0" step="1000" value="40000" />
+                <input id="transportPrevious" name="transportPrevious" type="number" min="0" step="1000" value="140000" />
               </div>
 
               <div class="field">
                 <label for="servicesPrevious">Servicios</label>
-                <input id="servicesPrevious" name="servicesPrevious" type="number" min="0" step="1000" value="60000" />
+                <input id="servicesPrevious" name="servicesPrevious" type="number" min="0" step="1000" value="75000" />
               </div>
 
               <div class="field">
@@ -358,6 +439,26 @@
             <h3>Resumen y recomendaciones</h3>
             <div class="tips" id="tips"></div>
             <div class="subtle" style="margin-top: 10px;">Tu gasto estimado mensual sería de <strong id="monthlySpend">$0</strong> si mantienes este ritmo.</div>
+
+            <div class="goal-card">
+              <div class="section-title">Meta de ahorro</div>
+              <div class="field">
+                <label for="goalAmount">Meta de ahorro (COP)</label>
+                <input id="goalAmount" name="goalAmount" type="number" min="0" step="1000" value="300000" />
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" id="goalProgress"></div>
+              </div>
+              <div class="subtle" id="goalText" style="margin-top: 8px;">Define una meta para ver tu progreso.</div>
+            </div>
+
+            <div class="goal-card">
+              <div class="section-title">Historial rápido</div>
+              <div class="actions">
+                <button class="btn-primary" type="button" id="saveSnapshotBtn">Guardar snapshot</button>
+              </div>
+              <div class="history-list" id="historyList"></div>
+            </div>
           </div>
         </div>
 
@@ -394,6 +495,7 @@
       ];
 
       const storageKey = 'budget-quincenal-v1';
+      const historyKey = 'budget-history-v1';
 
       function formatCurrency(value) {
         return new Intl.NumberFormat('es-CO', {
@@ -417,7 +519,8 @@
           services: Number(document.getElementById('servicesPrevious').value || 0),
           others: Number(document.getElementById('othersPrevious').value || 0)
         };
-        return { salary, current, previous };
+        const goalAmount = Number(document.getElementById('goalAmount').value || 0);
+        return { salary, current, previous, goalAmount };
       }
 
       function saveData() {
@@ -426,18 +529,23 @@
         updateDashboard();
       }
 
-      function renderSuggestions(salary) {
-        const suggestionMap = {
-          food: salary * 0.22,
-          transport: salary * 0.08,
-          services: salary * 0.09,
-          others: salary * 0.07
+      function getSuggestionMap(salary) {
+        return {
+          food: Math.max(500000, salary * 0.55),
+          transport: Math.max(120000, salary * 0.16),
+          services: Math.max(60000, salary * 0.08),
+          others: Math.max(30000, salary * 0.05)
         };
+      }
+
+      function renderSuggestions(salary) {
+        const suggestionMap = getSuggestionMap(salary);
 
         document.getElementById('foodSuggestedValue').textContent = formatCurrency(suggestionMap.food);
         document.getElementById('transportSuggestedValue').textContent = formatCurrency(suggestionMap.transport);
         document.getElementById('servicesSuggestedValue').textContent = formatCurrency(suggestionMap.services);
         document.getElementById('othersSuggestedValue').textContent = formatCurrency(suggestionMap.others);
+        return suggestionMap;
       }
 
       function loadData() {
@@ -445,15 +553,16 @@
         if (!saved) return;
         try {
           const data = JSON.parse(saved);
-          document.getElementById('salary').value = data.salary || 1300000;
-          document.getElementById('foodCurrent').value = data.current?.food || 250000;
-          document.getElementById('transportCurrent').value = data.current?.transport || 90000;
-          document.getElementById('servicesCurrent').value = data.current?.services || 120000;
-          document.getElementById('othersCurrent').value = data.current?.others || 80000;
-          document.getElementById('foodPrevious').value = data.previous?.food || 230000;
-          document.getElementById('transportPrevious').value = data.previous?.transport || 85000;
-          document.getElementById('servicesPrevious').value = data.previous?.services || 110000;
-          document.getElementById('othersPrevious').value = data.previous?.others || 70000;
+          document.getElementById('salary').value = data.salary || 900000;
+          document.getElementById('foodCurrent').value = data.current?.food || 180000;
+          document.getElementById('transportCurrent').value = data.current?.transport || 45000;
+          document.getElementById('servicesCurrent').value = data.current?.services || 70000;
+          document.getElementById('othersCurrent').value = data.current?.others || 50000;
+          document.getElementById('foodPrevious').value = data.previous?.food || 170000;
+          document.getElementById('transportPrevious').value = data.previous?.transport || 40000;
+          document.getElementById('servicesPrevious').value = data.previous?.services || 60000;
+          document.getElementById('othersPrevious').value = data.previous?.others || 45000;
+          document.getElementById('goalAmount').value = data.goalAmount || 300000;
         } catch (error) {
           console.warn('No se pudo cargar el estado guardado', error);
         }
@@ -579,6 +688,84 @@
         });
       }
 
+      function renderGoal(data) {
+        const currentTotal = Object.values(data.current).reduce((sum, value) => sum + value, 0);
+        const remaining = data.salary - currentTotal;
+        const goalAmount = data.goalAmount || 0;
+        const progress = goalAmount > 0 ? Math.min(100, Math.max(0, (remaining / goalAmount) * 100)) : 0;
+
+        document.getElementById('goalProgress').style.width = `${progress}%`;
+
+        if (goalAmount <= 0) {
+          document.getElementById('goalText').textContent = 'Define una meta para ver tu progreso.';
+        } else if (remaining >= goalAmount) {
+          document.getElementById('goalText').textContent = `¡Lo lograste! Ya cubres tu meta de ${formatCurrency(goalAmount)}.`;
+        } else {
+          document.getElementById('goalText').textContent = `Te faltan ${formatCurrency(goalAmount - remaining)} para alcanzar tu meta.`;
+        }
+      }
+
+      function renderAlertStates(data, suggestionMap) {
+        const currentTotal = Object.values(data.current).reduce((sum, value) => sum + value, 0);
+        const remaining = data.salary - currentTotal;
+        const spendRatio = currentTotal / Math.max(data.salary, 1);
+        const isDanger = remaining < 0 || spendRatio > 0.95;
+        const isWarning = spendRatio > 0.8 && !isDanger;
+
+        document.getElementById('currentSpendValue').closest('.stat').classList.toggle('danger', isDanger);
+        document.getElementById('currentSpendValue').closest('.stat').classList.toggle('warning', isWarning);
+        document.getElementById('remainingValue').closest('.stat').classList.toggle('danger', isDanger);
+        document.getElementById('remainingValue').closest('.stat').classList.toggle('warning', isWarning);
+
+        [
+          { key: 'food', inputId: 'foodCurrent', boxId: 'foodSuggestedValue' },
+          { key: 'transport', inputId: 'transportCurrent', boxId: 'transportSuggestedValue' },
+          { key: 'services', inputId: 'servicesCurrent', boxId: 'servicesSuggestedValue' },
+          { key: 'others', inputId: 'othersCurrent', boxId: 'othersSuggestedValue' }
+        ].forEach(({ key, inputId, boxId }) => {
+          const input = document.getElementById(inputId);
+          const box = document.getElementById(boxId).closest('.suggestion-box');
+          const exceeded = data.current[key] > suggestionMap[key];
+          input.classList.toggle('over-limit', exceeded);
+          box.classList.toggle('over-limit', exceeded);
+        });
+      }
+
+      function saveSnapshot() {
+        const data = readForm();
+        const history = JSON.parse(localStorage.getItem(historyKey) || '[]');
+        const currentTotal = Object.values(data.current).reduce((sum, value) => sum + value, 0);
+        const remaining = data.salary - currentTotal;
+
+        history.unshift({
+          date: new Date().toLocaleString('es-CO', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+          total: currentTotal,
+          remaining,
+          goal: data.goalAmount
+        });
+
+        localStorage.setItem(historyKey, JSON.stringify(history.slice(0, 5)));
+        renderHistory();
+      }
+
+      function renderHistory() {
+        const history = JSON.parse(localStorage.getItem(historyKey) || '[]');
+        const historyList = document.getElementById('historyList');
+
+        if (!history.length) {
+          historyList.innerHTML = '<div class="history-item"><strong>Aún no hay snapshots</strong><span class="subtle">Guarda uno para ver tu progreso aquí.</span></div>';
+          return;
+        }
+
+        historyList.innerHTML = history.map((entry) => `
+          <div class="history-item">
+            <strong>${entry.date}</strong>
+            <span class="subtle">Gasto: ${formatCurrency(entry.total)} · Sobra: ${formatCurrency(entry.remaining)}</span>
+            ${entry.goal ? `<span class="chip">Meta: ${formatCurrency(entry.goal)}</span>` : ''}
+          </div>
+        `).join('');
+      }
+
       function renderTips(data) {
         const tips = document.getElementById('tips');
         const currentTotal = Object.values(data.current).reduce((sum, value) => sum + value, 0);
@@ -615,24 +802,29 @@
 
       function updateDashboard() {
         const data = readForm();
-        renderSuggestions(data.salary);
+        const suggestionMap = renderSuggestions(data.salary);
+        renderGoal(data);
+        renderAlertStates(data, suggestionMap);
         renderTips(data);
         renderComparisonTable(data);
         renderChart(data);
+        renderHistory();
       }
 
       document.getElementById('saveBtn').addEventListener('click', saveData);
+      document.getElementById('saveSnapshotBtn').addEventListener('click', saveSnapshot);
       document.getElementById('resetBtn').addEventListener('click', () => {
         localStorage.removeItem(storageKey);
         document.getElementById('salary').value = 900000;
-        document.getElementById('foodCurrent').value = 180000;
-        document.getElementById('transportCurrent').value = 45000;
-        document.getElementById('servicesCurrent').value = 70000;
-        document.getElementById('othersCurrent').value = 50000;
-        document.getElementById('foodPrevious').value = 170000;
-        document.getElementById('transportPrevious').value = 40000;
-        document.getElementById('servicesPrevious').value = 60000;
-        document.getElementById('othersPrevious').value = 45000;
+        document.getElementById('foodCurrent').value = 170000;
+        document.getElementById('transportCurrent').value = 40000;
+        document.getElementById('servicesCurrent').value = 60000;
+        document.getElementById('othersCurrent').value = 45000;
+        document.getElementById('foodPrevious').value = 160000;
+        document.getElementById('transportPrevious').value = 35000;
+        document.getElementById('servicesPrevious').value = 55000;
+        document.getElementById('othersPrevious').value = 40000;
+        document.getElementById('goalAmount').value = 300000;
         updateDashboard();
       });
 
@@ -641,6 +833,7 @@
       });
 
       loadData();
+      renderHistory();
       updateDashboard();
     </script>
   </body>
